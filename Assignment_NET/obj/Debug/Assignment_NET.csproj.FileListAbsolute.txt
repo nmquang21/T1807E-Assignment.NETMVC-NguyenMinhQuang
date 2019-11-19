@@ -93,5 +93,14 @@ E:\APTECH\Sem3\ASP.NET MVC\Assignment_NET\Assignment_NET\bin\System.Memory.xml
 E:\APTECH\Sem3\ASP.NET MVC\Assignment_NET\Assignment_NET\bin\System.Numerics.Vectors.xml
 E:\APTECH\Sem3\ASP.NET MVC\Assignment_NET\Assignment_NET\bin\System.Runtime.CompilerServices.Unsafe.xml
 E:\APTECH\Sem3\ASP.NET MVC\Assignment_NET\Assignment_NET\bin\System.Threading.Tasks.Extensions.xml
-E:\APTECH\Sem3\ASP.NET MVC\Assignment_NET\Assignment_NET\obj\Debug\Assignment_NET.Migrations.CreateCategory.resources
+E:\APTECH\Sem3\ASP.NET MVC\Assignment_NET\Assignment_NET\obj\Debug\Assignment_NET.Migrations.CreateCategoryProduct.resources
 E:\APTECH\Sem3\ASP.NET MVC\Assignment_NET\Assignment_NET\obj\Debug\Assignment_NET.csproj.GenerateResource.cache
+E:\APTECH\Sem3\ASP.NET MVC\Assignment_NET\Assignment_NET\obj\Debug\Assignment_NET.Migrations.addGender.resources
+E:\APTECH\Sem3\ASP.NET MVC\Assignment_NET\Assignment_NET\bin\System.Net.Http.Formatting.dll
+E:\APTECH\Sem3\ASP.NET MVC\Assignment_NET\Assignment_NET\bin\System.Web.Http.dll
+E:\APTECH\Sem3\ASP.NET MVC\Assignment_NET\Assignment_NET\bin\System.Web.Http.WebHost.dll
+E:\APTECH\Sem3\ASP.NET MVC\Assignment_NET\Assignment_NET\bin\System.Net.Http.Formatting.xml
+E:\APTECH\Sem3\ASP.NET MVC\Assignment_NET\Assignment_NET\bin\System.Web.Http.xml
+E:\APTECH\Sem3\ASP.NET MVC\Assignment_NET\Assignment_NET\bin\System.Web.Http.WebHost.xml
+E:\APTECH\Sem3\ASP.NET MVC\Assignment_NET\Assignment_NET\bin\LinqKit.dll
+E:\APTECH\Sem3\ASP.NET MVC\Assignment_NET\Assignment_NET\bin\LinqKit.xml

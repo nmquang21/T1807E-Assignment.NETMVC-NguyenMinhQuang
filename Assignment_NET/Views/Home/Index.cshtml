@@ -1,11 +1,16 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@model IEnumerable<Assignment_NET.Models.Category>
+@*@model Assignment_NET.Models.Product*@
+
 @section css
 {
     <link href="~/CSS/Index/index.css" rel="stylesheet" />
     <link href="~/CSS/Product/product.css" rel="stylesheet" />
 }
+
+
 <div class="row menu-top">
     <div class="left-menu col-lg-3 col-md-12">
         <div class="title">
@@ -13,14 +18,16 @@
             <div><i class="fas fa-bars icon"></i></div>
         </div>
         <ul class="cate-list">
-            <li class="cate-item">Đồ sơ sinh-bỉm tã 1</li>
-            <li class="cate-item">Đồ sơ sinh-bỉm tã 2</li>
-            <li class="cate-item">Đồ sơ sinh-bỉm tã 3</li>
-            <li class="cate-item">Đồ sơ sinh-bỉm tã</li>
-            <li class="cate-item">Đồ sơ sinh-bỉm tã</li>
-            <li class="cate-item">Đồ sơ sinh-bỉm tã</li>
-            <li class="cate-item">Đồ sơ sinh-bỉm tã</li>
-            <li class="cate-item">Đồ sơ sinh-bỉm tã</li>
+            @foreach (var item in Model)
+            {
+
+            <a href="/Products/Category/@item.Id">
+                <li class="cate-item">
+                    <img src="~/Content/icons/@item.Icon" />
+                    @item.Name
+                </li>
+            </a>
+            }
         </ul>
     </div>
     <div class="right-menu col-lg-9 col-md-12">
@@ -52,206 +59,62 @@
         </div>
     </div>
 </div>
+<div class="products">
+    <div class="male-product">
+        <div style=" border-bottom : 1px solid #eee;">
+            <span class="title"><img class="title-icon" src="~/Content/icons/boy.png" />Boy Fashion</span>
+        </div>
+        <div class="list-product row">
+            @for (int i = 0; i < ViewBag.MaleProducts.Count; i++)
+            {
+                <div class="col-lg-3 col-6">
+                    <div class="product">
+                        <div class="product-img">
+                            <a href="/Products/Details/@ViewBag.MaleProducts[i].Id">
+                                <img class="img-responsive" alt="product" src="~/Content/images/products/@ViewBag.MaleProducts[i].Image">
+                            </a>
+                            <div class="overlay">
+                                <a href="/Products/Details/@ViewBag.MaleProducts[i].Id" class="view"><i class="fas fa-eye mr-1"></i>View</a>
+                                <div class="view confirm-buy" data-toggle="modal" data-target="#confirm-buy"  product-id ="@ViewBag.MaleProducts[i].Id"><i class="fas fa-cart-plus mr-1"></i>Buy</div>
+                            </div>
+                        </div>
 
-<div class="row">
-
-    <div class="col-3">
-        <div class="product">
-            <div class="product-img">
-                <a href="#">
-                    <img class="img-responsive" alt="product" src="http://www.babyshop123.vn/static/p/427/sandal-nam-baby-sn14-1-1-268x268.jpg">
-                </a>
-                <div class="overlay">
-                    <div class="view"><i class="fas fa-eye mr-1"></i>View</div>
-                    <div class="view"><i class="fas fa-cart-plus mr-1"></i>Buy</div>
+                        <div class="product-info">
+                            <div class="product-name">@ViewBag.MaleProducts[i].Name</div>
+                            <div class="product-price">@ViewBag.MaleProducts[i].Price</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="product-info">
-                <div class="product-name">Sandal nam baby sn14</div>
-                <div class="product-price">200000</div>
-            </div>
+            }
         </div>
     </div>
-    <div class="col-3">
-        <div class="product">
-            <div class="product-img">
-                <a href="#">
-                    <img class="img-responsive" alt="product" src="http://www.babyshop123.vn/static/p/427/sandal-nam-baby-sn14-1-1-268x268.jpg">
-                </a>
-                <div class="overlay">
-                    <div class="view"><i class="fas fa-eye mr-1"></i>View</div>
-                    <div class="view"><i class="fas fa-cart-plus mr-1"></i>Buy</div>
-                </div>
-            </div>
+    <div class="female-product">
+        <div  style=" border-bottom : 1px solid #eee;">
+            <span class="title"><img class="title-icon" src="~/Content/icons/girl.png" />Girl Fashion</span>
+        </div>
+        <div class="list-product row">
+            @for (int i = 0; i < ViewBag.FemaleProducts.Count; i++)
+            {
+                <div class="col-lg-3 col-6">
+                    <div class="product">
+                        <div class="product-img">
+                            <a href="/Products/Details/@ViewBag.FemaleProducts[i].Id">
+                                <img class="img-responsive" alt="product" src="~/Content/images/products/@ViewBag.FemaleProducts[i].Image">
+                            </a>
+                            <div class="overlay">
+                                <div class="view"><i class="fas fa-eye mr-1"></i>View</div>
+                                <div class="view confirm-buy" data-toggle="modal" data-target="#confirm-buy" product-id ="@ViewBag.FemaleProducts[i].Id"><i class="fas fa-cart-plus mr-1"></i>Buy</div>
+                            </div>
+                        </div>
 
-            <div class="product-info">
-                <div class="product-name">Sandal nam baby sn14</div>
-                <div class="product-price">200000</div>
-            </div>
+                        <div class="product-info">
+                            <div class="product-name">@ViewBag.FemaleProducts[i].Name</div>
+                            <div class="product-price">@ViewBag.FemaleProducts[i].Price</div>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     </div>
-    <div class="col-3">
-        <div class="product">
-            <div class="product-img">
-                <a href="#">
-                    <img class="img-responsive" alt="product" src="http://www.babyshop123.vn/static/p/427/sandal-nam-baby-sn14-1-1-268x268.jpg">
-                </a>
-                <div class="overlay">
-                    <div class="view"><i class="fas fa-eye mr-1"></i>View</div>
-                    <div class="view"><i class="fas fa-cart-plus mr-1"></i>Buy</div>
-                </div>
-            </div>
-
-            <div class="product-info">
-                <div class="product-name">Sandal nam baby sn14</div>
-                <div class="product-price">200000</div>
-            </div>
-        </div>
-    </div><div class="col-3">
-        <div class="product">
-            <div class="product-img">
-                <a href="#">
-                    <img class="img-responsive" alt="product" src="http://www.babyshop123.vn/static/p/427/sandal-nam-baby-sn14-1-1-268x268.jpg">
-                </a>
-                <div class="overlay">
-                    <div class="view"><i class="fas fa-eye mr-1"></i>View</div>
-                    <div class="view"><i class="fas fa-cart-plus mr-1"></i>Buy</div>
-                </div>
-            </div>
-
-            <div class="product-info">
-                <div class="product-name">Sandal nam baby sn14</div>
-                <div class="product-price">200000</div>
-            </div>
-        </div>
-    </div>
-    <div class="col-3">
-        <div class="product">
-            <div class="product-img">
-                <a href="#">
-                    <img class="img-responsive" alt="product" src="http://www.babyshop123.vn/static/p/427/sandal-nam-baby-sn14-1-1-268x268.jpg">
-                </a>
-                <div class="overlay">
-                    <div class="view"><i class="fas fa-eye mr-1"></i>View</div>
-                    <div class="view"><i class="fas fa-cart-plus mr-1"></i>Buy</div>
-                </div>
-            </div>
-
-            <div class="product-info">
-                <div class="product-name">Sandal nam baby sn14</div>
-                <div class="product-price">200000</div>
-            </div>
-        </div>
-    </div>
-    <div class="col-3">
-        <div class="product">
-            <div class="product-img">
-                <a href="#">
-                    <img class="img-responsive" alt="product" src="http://www.babyshop123.vn/static/p/427/sandal-nam-baby-sn14-1-1-268x268.jpg">
-                </a>
-                <div class="overlay">
-                    <div class="view"><i class="fas fa-eye mr-1"></i>View</div>
-                    <div class="view"><i class="fas fa-cart-plus mr-1"></i>Buy</div>
-                </div>
-            </div>
-
-            <div class="product-info">
-                <div class="product-name">Sandal nam baby sn14</div>
-                <div class="product-price">200000</div>
-            </div>
-        </div>
-    </div>
-    <div class="col-3">
-        <div class="product">
-            <div class="product-img">
-                <a href="#">
-                    <img class="img-responsive" alt="product" src="http://www.babyshop123.vn/static/p/427/sandal-nam-baby-sn14-1-1-268x268.jpg">
-                </a>
-                <div class="overlay">
-                    <div class="view"><i class="fas fa-eye mr-1"></i>View</div>
-                    <div class="view"><i class="fas fa-cart-plus mr-1"></i>Buy</div>
-                </div>
-            </div>
-
-            <div class="product-info">
-                <div class="product-name">Sandal nam baby sn14</div>
-                <div class="product-price">200000</div>
-            </div>
-        </div>
-    </div>
-    <div class="col-3">
-        <div class="product">
-            <div class="product-img">
-                <a href="#">
-                    <img class="img-responsive" alt="product" src="http://www.babyshop123.vn/static/p/427/sandal-nam-baby-sn14-1-1-268x268.jpg">
-                </a>
-                <div class="overlay">
-                    <div class="view"><i class="fas fa-eye mr-1"></i>View</div>
-                    <div class="view"><i class="fas fa-cart-plus mr-1"></i>Buy</div>
-                </div>
-            </div>
-
-            <div class="product-info">
-                <div class="product-name">Sandal nam baby sn14</div>
-                <div class="product-price">200000</div>
-            </div>
-        </div>
-    </div>
-    <div class="col-3">
-        <div class="product">
-            <div class="product-img">
-                <a href="#">
-                    <img class="img-responsive" alt="product" src="http://www.babyshop123.vn/static/p/427/sandal-nam-baby-sn14-1-1-268x268.jpg">
-                </a>
-                <div class="overlay">
-                    <div class="view"><i class="fas fa-eye mr-1"></i>View</div>
-                    <div class="view"><i class="fas fa-cart-plus mr-1"></i>Buy</div>
-                </div>
-            </div>
-
-            <div class="product-info">
-                <div class="product-name">Sandal nam baby sn14</div>
-                <div class="product-price">200000</div>
-            </div>
-        </div>
-    </div>
-    <div class="col-3">
-        <div class="product">
-            <div class="product-img">
-                <a href="#">
-                    <img class="img-responsive" alt="product" src="http://www.babyshop123.vn/static/p/427/sandal-nam-baby-sn14-1-1-268x268.jpg">
-                </a>
-                <div class="overlay">
-                    <div class="view"><i class="fas fa-eye mr-1"></i>View</div>
-                    <div class="view"><i class="fas fa-cart-plus mr-1"></i>Buy</div>
-                </div>
-            </div>
-
-            <div class="product-info">
-                <div class="product-name">Sandal nam baby sn14</div>
-                <div class="product-price">200000</div>
-            </div>
-        </div>
-    </div>
-
-    @*<div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </div>*@
 </div>
+

@@ -7,13 +7,13 @@ namespace Assignment_NET.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class CreateCategory : IMigrationMetadata
+    public sealed partial class addGender : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateCategory));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addGender));
         
         string IMigrationMetadata.Id
         {
-            get { return "201911170442270_CreateCategory"; }
+            get { return "201911181505467_addGender"; }
         }
         
         string IMigrationMetadata.Source

@@ -24,6 +24,7 @@ textarea {
 }
 .header .cart{
     position : relative;
+    cursor : pointer;
 }
 .header .cart .cart-icon {
     color: #fff;
@@ -47,11 +48,19 @@ textarea {
     color: #fff;
     font-size: 16px;
     font-weight: 900;
-    background-color: #471c02;
+    background-color: #002347;
     padding: 15px;
     text-align: center;
     margin-top: 50px;
 }
 .footer .container>p{
     margin : 0;
+}
+.cate-list a {
+    text-decoration: none;
+    color: #000;
+}
+.cate-list a:hover {
+    text-decoration: none;
+    color: #fff;
 }

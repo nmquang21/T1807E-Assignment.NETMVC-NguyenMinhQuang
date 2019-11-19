@@ -1,11 +1,11 @@
-﻿.menu-top {
-    margin-top : 20px;
-    //display : flex;
-}
+﻿    .menu-top {
+        margin-top : 20px;
+        //display : flex;
+    }
 
-.menu-top .left-menu{
-   padding-right:0px;
-}
+    .menu-top .left-menu{
+       padding-right:0px;
+    }
     .menu-top .left-menu .title {
         background-color: #0088cc;
         color: #fff;
@@ -15,15 +15,15 @@
         align-items : center;
         
     }
-        .menu-top .left-menu .title .title-name {
-            margin: 0;
-        }
-        .menu-top .left-menu .title .icon{
-            font-size:21px
-        }
-        .menu-top .left-menu .title .icon:target {
-            font-size: 50px
-        }
+    .menu-top .left-menu .title .title-name {
+        margin: 0;
+    }
+    .menu-top .left-menu .title .icon{
+        font-size:21px
+    }
+    .menu-top .left-menu .title .icon:target {
+        font-size: 50px
+    }
     .menu-top .left-menu .cate-list {
         border: 3px solid #0088cc;
         border-radius: 1px;
@@ -33,16 +33,38 @@
         color : #666;
         user-select : none;
     }
-        .menu-top .left-menu .cate-list .cate-item {
-            padding : 10px;
-        }
-        .menu-top .left-menu .cate-list .cate-item:hover {
-            background-color: #3ca6db;
-            color : #fff;
-            cursor : pointer;
-        }
+    .menu-top .left-menu .cate-list .cate-item {
+        padding : 10px;
+    }
+    .menu-top .left-menu .cate-list .cate-item:hover {
+        background-color: #3ca6db;
+        color : #fff;
+        cursor : pointer;
+    }
     .menu-top .right-menu {
         height: 400px;
         overflow: hidden;
-       // width: 70%
     }
+    .products .male-product {
+       margin-bottom : 30px;
+       margin-top : 20px;
+    }
+.products .female-product {
+    
+}
+.products .title {
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+    user-select: none;
+    align-items: center;
+    padding-bottom: 5px;
+    border-bottom: 3.5px solid #009966;
+    display: inline-flex;
+}
+.products .title .title-icon{
+    margin-right : 5px;
+}
+    .products .title:hover{
+    color : red;
+}

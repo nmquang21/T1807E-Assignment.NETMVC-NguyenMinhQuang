@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Assignment_NET.Models.Product>
+
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section css
+{
+    <link href="~/CSS/Index/index.css" rel="stylesheet" />
+    <link href="~/CSS/Product/product.css" rel="stylesheet" />
+}
+
+<h2 style="display:inline">Category</h2>
+@if (ViewBag.CategoryName as string != null)
+{
+    <h5 style="display:inline">/@ViewBag.CategoryName</h5>
+}
+else
+{
+    <h5 style="display:inline">/All Categories</h5>
+}
+
+
+
+
+<div class="row menu-top">
+    <div class="left-menu col-lg-3 col-md-12" style="margin-top: 30px">
+        <div class="title">
+            <h6 class="title-name">CATEGORY</h6>
+            <div><i class="fas fa-bars icon"></i></div>
+        </div>
+        <ul class="cate-list">
+            @foreach (var item in ViewBag.Categories)
+            {
+
+
+                <a href="/Products/Category/@item.Id">
+                    <li class="cate-item">
+                        <img src="~/Content/icons/@item.Icon" />
+                        @item.Name
+                    </li>
+                </a>
+
+            }
+        </ul>
+
+    </div>
+    <div class="col-lg-9 col-md-12">
+
+        <div class="list-product row">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-6 col-lg-4">
+                    <div class="product">
+                        <div class="product-img">
+                            <a href="/Products/Details/@item.Id">
+                                <img class="img-responsive" alt="product" src="~/Content/images/products/@item.Image">
+                            </a>
+                            <div class="overlay">
+                                <a href="/Products/Details/@item.Id" class="view"><i class="fas fa-eye mr-1"></i>View</a>
+                                <div class="view confirm-buy" data-toggle="modal" data-target="#confirm-buy" product-id="@item.Id"><i class="fas fa-cart-plus mr-1"></i>Buy</div>
+                            </div>
+                        </div>
+
+                        <div class="product-info">
+                            <div class="product-name">@item.Name</div>
+                            <div class="product-price">@item.Price</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+

@@ -1,21 +1,29 @@
-﻿.product {
-    height: 320px;
-    border: 1px solid #efefef;
-    border-radius:5px;
-    
+﻿    .product a{
+        text-decoration : none;
+        color : #fff;
+    }
+.product a:hover {
+    text-decoration: none;
+    color: #deedec;
 }
+.product {
+        height: 320px;
+        border: 1px solid #cad9ee;
+        border-radius:5px;
+        margin-top : 30px;
+    }
     .product .product-img {
         position: relative;
         overflow : hidden;
         
     }
-        .product .product-img .img-responsive {
-            vertical-align: top;
-            max-width: 100%;
-            transition: all 0.5s;
-            transform: scale(0.9,0.9);
-            cursor: pointer;
-        }
+    .product .product-img .img-responsive {
+        vertical-align: top;
+        max-width: 100%;
+        transition: all 0.5s;
+        transform: scale(0.9,0.9);
+        cursor: pointer;
+    }
     .product:hover .img-responsive {
         webkit-transform: scale(1,1);
         -moz-transform: scale(1,1);

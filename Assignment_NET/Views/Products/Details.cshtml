@@ -1,0 +1,72 @@
+﻿@model Assignment_NET.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <div class="product-image row" style="position : relative">
+        <div style="position: absolute; right : 0; cursor: pointer; z-index:100">
+            <button class="btn btn-danger confirm-buy" data-toggle="modal" data-target="#confirm-buy" product-id ="@Model.Id">Add to Cart</button>
+        </div>
+        <div class="col-12 col-lg-4" style="text-align:center">
+            <img width="268" height="268" style="margin-right:25px" src="~/Content/images/products/@Model.Image" />
+        </div>
+        <div class="col-12 col-lg-8">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+
+                <dd style="color:orangered">
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </dt>
+
+                <dd>
+                    @if (Model.Gender == 0)
+                    {
+                        <div>Female</div>
+                    }
+                    else
+                    {
+                        <div>Male</div>
+                    }
+
+                </dd>
+
+            </dl>
+        </div>
+        
+    </div>
+    
+</div>
+<p>
+  
+    @Html.ActionLink("Back to List", "Index")
+</p>

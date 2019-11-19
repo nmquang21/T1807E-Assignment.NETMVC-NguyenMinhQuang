@@ -16,6 +16,6 @@ namespace WebApplication2.Models
 
         }
         public DbSet<Category> Categories { get; set; }
-        
+        public DbSet<Product> Products { get; set; }
     }
 }
