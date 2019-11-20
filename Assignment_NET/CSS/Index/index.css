@@ -34,7 +34,7 @@
         user-select : none;
     }
     .menu-top .left-menu .cate-list .cate-item {
-        padding : 10px;
+        padding : 9px;
     }
     .menu-top .left-menu .cate-list .cate-item:hover {
         background-color: #3ca6db;

@@ -39,7 +39,16 @@
 
                             <a class="cart" href="/Buy/CartDetail">
                                 <i class="fas fa-cart-plus cart-icon"></i>
-                                <span class="cart-quantity" id="cart-quantity">@Session["ItemQuantity"]</span>
+                                <span class="cart-quantity" id="cart-quantity">
+                                @if (Session["ItemQuantity"] != null)
+                                {
+                                    @Session["ItemQuantity"]
+                                }
+                                else
+                                {
+                                    <text>0</text>
+                                }
+                                </span>
                             </a>
 
                         </div>

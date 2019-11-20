@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assignment_NET.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -59,11 +60,59 @@ namespace Assignment_NET.Controllers
         [HttpGet]
         public ActionResult CartDetail()
         {
-            List<int> List = new List<int>();
-            List.Add(1);
-            List.Add(2);
+            Double TotalPrice = 0;
+            List<ItemCart> Cart = new List<ItemCart>();
+            ProductsController productsController = new ProductsController();
+            List<BuyItem> List = new List<BuyItem>();
+            if(Session["Cart"] != null)
+            {
+               Cart = Session["Cart"] as List<ItemCart>;
+            }
+           
+            foreach(var item in Cart)
+            {
+                Product product = productsController.GetProduct(item.ProductId);
+                List.Add(new BuyItem(product, item.Quantity));
+                TotalPrice += product.Price * item.Quantity;
+            }
+            ViewBag.TotalPrice = TotalPrice;
+            return View("~/Views/Buy/CartDetail.cshtml", List);
+        }
+        public string UpDownCart(string status, int? product_id)
+        {
+            Quantity = Session["ItemQuantity"] as Int32;
             
-            return View();
+            List<ItemCart> Cart = new List<ItemCart>();
+            if (Session["Cart"] != null)
+            {
+                Cart = Session["Cart"] as List<ItemCart>;
+            }
+            foreach(var item in Cart)
+            {
+                if(item.ProductId == product_id)
+                {
+                    if (status.Equals("-"))
+                    {                        
+                        item.Quantity--;
+                        if (item.Quantity == 0)
+                        {
+                            Cart.Remove(item);
+                            Quantity--;
+                        }
+                    }
+                    else if (status.Equals("+"))
+                    {
+                        item.Quantity++;
+                        Quantity++;
+                        Debug.WriteLine("++++");
+                    }
+                    break;
+                }
+                
+            }
+            Session["ItemQuantity"] = Quantity;
+            Session["Cart"] = Cart;
+            return "ok";
         }
     }
 }

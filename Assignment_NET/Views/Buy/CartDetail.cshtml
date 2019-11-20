@@ -1,8 +1,58 @@
-﻿
+﻿@model IEnumerable<Assignment_NET.Models.BuyItem>
 @{
     ViewBag.Title = "CartDetail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section css
+{
+    <link href="~/CSS/Product/cart-detail.css" rel="stylesheet" />
+}
 <h2>CartDetail</h2>
+
+
+<table style="width: 100%; margin-top:50px">
+    <thead style="border-bottom : 2px solid #e5adad">
+        <tr>
+            <th style="text-align:center; width: 15%">Image</th>
+            <th style="text-align:center; width: 25%">Name</th>
+            <th style="text-align:center; width: 20%">Price</th>
+            <th style="text-align:center; width: 10%">Quantity</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr style="border-bottom: 1px solid #d6bebe">
+                <td class="text-center">
+                    <img width="100" height="100" src="~/Content/images/products/@item.Product.Image" />
+                </td>
+                <td class="text-center">@item.Product.Name</td>
+                <td style="text-align:center; color:red">@item.Product.Price</td>
+                <td class="text-center">
+                    <div class="quantity" style="display : flex; align-content:center; justify-content: center">
+                        <input type="button" class="updown-cart" value="-" product-id ="@item.Product.Id" quantity="@item"/>
+                        <input class="quantity-input" disabled value="@item.Quantity" style="width:40px; text-align:center; display: inline" />
+                        <input type="button" class="updown-cart" value="+" product-id ="@item.Product.Id" quantity="@item"/>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <h5 class="float-right mt-4">
+        <span>Total Price: </span><span class="text-danger">@ViewBag.TotalPrice đ</span>
+    </h5>
+    @*<div class="item-buy" style="display: flex">
+            <div class="image">
+                <img width="100" height="100" src="~/Content/images/products/@item.Product.Image"/>
+            </div>
+
+                <h6 class="name">@item.Product.Name</h6>
+                <h6 class="price text-danger">@item.Product.Price</h6>
+
+            <div class="quantity">@item.Quantity</div>
+        </div>
+        <hr />*@
+
 
