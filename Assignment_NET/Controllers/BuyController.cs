@@ -13,6 +13,7 @@ namespace Assignment_NET.Controllers
     public class BuyController : Controller
     {
         private MyDbContext _myDbContex = new MyDbContext();
+        ProductsController productsController = new ProductsController();
         // GET: Buy
         [HttpPost]
         public int AddToCart(int product_id)
@@ -45,7 +46,6 @@ namespace Assignment_NET.Controllers
                 for (int i = 0; i < ProductQuantityAfter; i++)
                 {
                     ItemQuantity += Cart[i].Quantity;
-                    Debug.WriteLine(Cart[i].ProductId + "-----" + Cart[i].Quantity);
                 }
                 Session["ItemQuantity"] = ItemQuantity;
             }
@@ -62,7 +62,7 @@ namespace Assignment_NET.Controllers
         {
             Double TotalPrice = 0;
             List<ItemCart> Cart = new List<ItemCart>();
-            ProductsController productsController = new ProductsController();
+            
             List<BuyItem> List = new List<BuyItem>();
             if(Session["Cart"] != null)
             {
@@ -75,13 +75,15 @@ namespace Assignment_NET.Controllers
                 List.Add(new BuyItem(product, item.Quantity));
                 TotalPrice += product.Price * item.Quantity;
             }
-            ViewBag.TotalPrice = TotalPrice;
+
+            Session["TotalPrice"] = TotalPrice;
             return View("~/Views/Buy/CartDetail.cshtml", List);
         }
-        public string UpDownCart(string status, int? product_id)
+        public ActionResult UpDownCart(string status, int? product_id)
         {
-            Quantity = Session["ItemQuantity"] as Int32;
-            
+            int ItemQuantity = 0;
+            double TotalPrice = Double.Parse(Session["TotalPrice"].ToString());
+            var QuantityCart = Int32.Parse(Session["ItemQuantity"].ToString());
             List<ItemCart> Cart = new List<ItemCart>();
             if (Session["Cart"] != null)
             {
@@ -91,28 +93,42 @@ namespace Assignment_NET.Controllers
             {
                 if(item.ProductId == product_id)
                 {
+                    var Product = productsController.GetProduct(product_id);
                     if (status.Equals("-"))
                     {                        
                         item.Quantity--;
+                        QuantityCart--;
+                        TotalPrice -= Product.Price;
                         if (item.Quantity == 0)
                         {
                             Cart.Remove(item);
-                            Quantity--;
                         }
                     }
                     else if (status.Equals("+"))
                     {
                         item.Quantity++;
-                        Quantity++;
+                        QuantityCart++;
+                        TotalPrice += Product.Price;
                         Debug.WriteLine("++++");
                     }
+                    ItemQuantity = item.Quantity;
                     break;
-                }
-                
+                }              
             }
-            Session["ItemQuantity"] = Quantity;
+            Session["TotalPrice"] = TotalPrice;
+            Session["ItemQuantity"] = QuantityCart;
             Session["Cart"] = Cart;
-            return "ok";
+            return new JsonResult()
+            {
+                Data = new {
+                    QuantityCart = QuantityCart,
+                    TotalPrice = TotalPrice,
+                    ItemQuantity = ItemQuantity
+                },
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+            };
         }
+
+        
     }
 }

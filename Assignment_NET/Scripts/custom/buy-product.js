@@ -22,9 +22,8 @@
     })
     jQuery('.updown-cart').click(function () {
         let status = this.value;
-        let quantity = jQuery('.quantity-input').val();
+        let quantity_input = jQuery(this).siblings('.quantity-input');
         var product_id = jQuery(this).attr("product-id");
-        
         
         jQuery.ajax({
             method: 'post',
@@ -34,7 +33,9 @@
                 product_id: product_id,
             },
             success: function (data) {
-                //console.log(data)
+                jQuery('#cart-quantity').text(data.QuantityCart);
+                quantity_input.val(data.ItemQuantity);
+                jQuery('.total_price').text(data.TotalPrice);
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log("Status: " + textStatus);

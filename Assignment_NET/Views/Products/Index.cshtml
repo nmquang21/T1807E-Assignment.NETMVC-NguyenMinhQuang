@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Assignment_NET.Models.Product>
+﻿@model List<Assignment_NET.Models.Product>
 
 @{
     ViewBag.Title = "Product";
@@ -49,26 +49,33 @@ else
 
         <div class="list-product row">
 
-            @foreach (var item in Model)
+            @if (Model.Count > 0)
             {
-                <div class="col-6 col-lg-4">
-                    <div class="product">
-                        <div class="product-img">
-                            <a href="/Products/Details/@item.Id">
-                                <img class="img-responsive" alt="product" src="~/Content/images/products/@item.Image">
-                            </a>
-                            <div class="overlay">
-                                <a href="/Products/Details/@item.Id" class="view"><i class="fas fa-eye mr-1"></i>View</a>
-                                <div class="view confirm-buy" data-toggle="modal" data-target="#confirm-buy" product-id="@item.Id"><i class="fas fa-cart-plus mr-1"></i>Buy</div>
+                foreach (var item in Model)
+                {
+                    <div class="col-6 col-lg-4">
+                        <div class="product">
+                            <div class="product-img">
+                                <a href="/Products/Details/@item.Id">
+                                    <img class="img-responsive" alt="product" src="~/Content/images/products/@item.Image">
+                                </a>
+                                <div class="overlay">
+                                    <a href="/Products/Details/@item.Id" class="view"><i class="fas fa-eye mr-1"></i>View</a>
+                                    <div class="view confirm-buy" data-toggle="modal" data-target="#confirm-buy" product-id="@item.Id"><i class="fas fa-cart-plus mr-1"></i>Buy</div>
+                                </div>
+                            </div>
+
+                            <div class="product-info">
+                                <div class="product-name">@item.Name</div>
+                                <div class="product-price">@item.Price</div>
                             </div>
                         </div>
-
-                        <div class="product-info">
-                            <div class="product-name">@item.Name</div>
-                            <div class="product-price">@item.Price</div>
-                        </div>
                     </div>
-                </div>
+                }
+            }
+            else
+            {
+                <h5 class="text-danger mt-4 ml-5">No products!!</h5>
             }
         </div>
 

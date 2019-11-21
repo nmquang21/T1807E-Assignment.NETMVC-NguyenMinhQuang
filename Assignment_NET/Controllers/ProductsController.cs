@@ -72,6 +72,7 @@ namespace Assignment_NET.Controllers
                 }).ToList();
             }         
             ViewBag.Categories = db.Categories.ToList();
+            ViewBag.SearchText = search_value;
             return View("~/Views/Products/Index.cshtml", List);
         }
         // GET: Products/Create

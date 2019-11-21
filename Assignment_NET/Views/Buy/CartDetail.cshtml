@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Assignment_NET.Models.BuyItem>
+﻿@model List<Assignment_NET.Models.BuyItem>
 @{
     ViewBag.Title = "CartDetail";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -20,39 +20,39 @@
         </tr>
 
     </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr style="border-bottom: 1px solid #d6bebe">
-                <td class="text-center">
-                    <img width="100" height="100" src="~/Content/images/products/@item.Product.Image" />
-                </td>
-                <td class="text-center">@item.Product.Name</td>
-                <td style="text-align:center; color:red">@item.Product.Price</td>
-                <td class="text-center">
-                    <div class="quantity" style="display : flex; align-content:center; justify-content: center">
-                        <input type="button" class="updown-cart" value="-" product-id ="@item.Product.Id" quantity="@item"/>
-                        <input class="quantity-input" disabled value="@item.Quantity" style="width:40px; text-align:center; display: inline" />
-                        <input type="button" class="updown-cart" value="+" product-id ="@item.Product.Id" quantity="@item"/>
-                    </div>
-                </td>
-            </tr>
+    @if (Model.Count > 0)
+    {
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr style="border-bottom: 1px solid #d6bebe">
+                    <td class="text-center">
+                        <img width="100" height="100" src="~/Content/images/products/@item.Product.Image" />
+                    </td>
+                    <td class="text-center">@item.Product.Name</td>
+                    <td style="text-align:center; color:red">@item.Product.Price</td>
+                    <td class="text-center">
+                        <div class="quantity" style="display : flex; align-content:center; justify-content: center">
+                            <input type="button" class="updown-cart" value="-" product-id="@item.Product.Id" quantity="@item" />
+                            <input class="quantity-input" disabled value="@item.Quantity" style="width:40px; text-align:center; display: inline" />
+                            <input type="button" class="updown-cart" value="+" product-id="@item.Product.Id" quantity="@item" />
+                        </div>
+                    </td>
+                </tr>
             }
         </tbody>
-    </table>
+    }
+    else
+    {
+
+    <h5 class="text-danger">No Item in your Cart!</h5>
+
+        
+    }
+
+</table>
     <h5 class="float-right mt-4">
-        <span>Total Price: </span><span class="text-danger">@ViewBag.TotalPrice đ</span>
+        <span>Total Price: </span><span class="text-danger total_price">@if (Session["TotalPrice"] != null) { @Session["TotalPrice"]} else {<text>0</text>}  đ</span>
     </h5>
-    @*<div class="item-buy" style="display: flex">
-            <div class="image">
-                <img width="100" height="100" src="~/Content/images/products/@item.Product.Image"/>
-            </div>
-
-                <h6 class="name">@item.Product.Name</h6>
-                <h6 class="price text-danger">@item.Product.Price</h6>
-
-            <div class="quantity">@item.Quantity</div>
-        </div>
-        <hr />*@
-
+   
 

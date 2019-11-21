@@ -32,22 +32,22 @@
                         </li>
                     </ul>
                     <form class="form-inline" method="post" action="/Products/Search">
-                        <input class="form-control mr-sm-2" type="text" name="search_value" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit" >Search</button>
+                        <input class="form-control mr-sm-2" type="text" name="search_value" placeholder="Search" aria-label="Search" value="@{if (ViewBag.SearchText != null) { @ViewBag.SearchText}}">
+                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
 
                         <div class="dropdown">
 
                             <a class="cart" href="/Buy/CartDetail">
                                 <i class="fas fa-cart-plus cart-icon"></i>
                                 <span class="cart-quantity" id="cart-quantity">
-                                @if (Session["ItemQuantity"] != null)
-                                {
-                                    @Session["ItemQuantity"]
-                                }
-                                else
-                                {
-                                    <text>0</text>
-                                }
+                                    @if (Session["ItemQuantity"] != null)
+                                    {
+                                        @Session["ItemQuantity"]
+                                    }
+                                    else
+                                    {
+                                        <text>0</text>
+                                    }
                                 </span>
                             </a>
 
@@ -87,9 +87,9 @@
     </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/custom/format-data.js"></script>
     <script type="text/javascript" src="~/Scripts/custom/buy-product.js"></script>
     <script type="text/javascript" src="~/Scripts/custom/search.js"></script>
-
     @RenderSection("scripts", required: false)
 </body>
 </html>
